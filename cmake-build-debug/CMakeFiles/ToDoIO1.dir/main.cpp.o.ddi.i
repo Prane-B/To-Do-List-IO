@@ -75596,31 +75596,46 @@ namespace std __attribute__ ((__visibility__ ("default")))
 # 3 "/home/praneshb/CLionProjects/ToDoIO1/main.cpp" 2
 
 
-# 4 "/home/praneshb/CLionProjects/ToDoIO1/main.cpp"
+
+# 5 "/home/praneshb/CLionProjects/ToDoIO1/main.cpp"
 using namespace std;
 
 string add;
 vector<string> todo = {};
 int i = 0;
+int j;
+string cmd;
 
-void checklist () {
+void checklist() {
+    i = 0;
     for (i; i < todo.size(); i++) {
-        cout << todo[i] << endl;
+        cout << i << ". " << todo[i] << endl;
     }
-    if (0 == todo.size()) {
+    if (todo.empty()) {
         cout << "No tasks" << endl;
     }
 }
 
 int main() {
-    cin >> add;
-    todo.push_back(add);
-    cin >> add;
-    todo.push_back(add);
-    cin >> add;
-    todo.push_back(add);
-    cin >> add;
-    todo.push_back(add);
+    while (true) {
+        cin >> cmd;
+        cin.ignore();
+
+        if (cmd == "add") {
+            getline(cin, add);
+            todo.push_back(add);
+        }
+        else if (cmd == "check") {
+            checklist();
+        }
+        else if (cmd == "remove") {
+            cin >> j;
+            todo.erase(todo.begin() + j);
+        }
+        else if (cmd == "exit") {
+            break;
+        }
+    }
     checklist();
     return 0;
 }
